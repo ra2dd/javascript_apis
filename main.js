@@ -38,7 +38,6 @@ playButton.addEventListener('click', (event) =>
     if(audioCtx.state === States.suspended)
     {
         audioCtx.resume();
-        console.log("resumed context");
     }
 
 
@@ -52,7 +51,18 @@ playButton.addEventListener('click', (event) =>
     }
 });
 
-audioCtx.addEventListener(States.ended, (event) =>
+audioElement.addEventListener(States.ended, (event) =>
 {
-    changeState(event, States.paused, "Play");
+    console.log("ended");
+    event.target.setAttribute('class', States.paused);
+    event.target.textContent = "Play";
 });
+
+
+const gainNode = audioCtx.createGain();
+volumeSlider.addEventListener('input', () =>
+{
+    gainNode.gain.value = volumeSlider.value;
+});
+
+audioSource.connect(gainNode).connect(audioCtx.destination);
