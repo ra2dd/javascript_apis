@@ -1,3 +1,5 @@
+// manipulating AudioContext API
+
 const audioElement = document.querySelector("audio");
 const playButton = document.querySelector("button");
 const volumeSlider = document.querySelector(".volume");
@@ -66,3 +68,32 @@ volumeSlider.addEventListener('input', () =>
 });
 
 audioSource.connect(gainNode).connect(audioCtx.destination);
+
+
+
+
+
+
+
+// Manipulating documents
+
+const link = document.querySelector("a");
+const section = document.querySelector("section");
+
+link.textContent = "Mozilla developer network";
+link.href = 'https://developer.mozilla.org';
+
+const para = document.createElement('h3');
+para.textContent = "Get to know useful techinques."
+section.appendChild(para);
+
+const text = document.createTextNode(' - the premier source of web dev.');
+const linkPara = document.querySelector('p');
+linkPara.appendChild(text);
+
+const body = document.querySelector('body');
+body.appendChild(linkPara);
+//linkPara.removeChild(text);
+//text.remove();
+//text.parentNode.removeChild(text);
+
