@@ -83,17 +83,56 @@ const section = document.querySelector("section");
 link.textContent = "Mozilla developer network";
 link.href = 'https://developer.mozilla.org';
 
-const para = document.createElement('h3');
-para.textContent = "Get to know useful techinques."
-section.appendChild(para);
+const heading = document.createElement('h3');
+heading.textContent = "Get to know useful techinques."
+section.appendChild(heading);
 
 const text = document.createTextNode(' - the premier source of web dev.');
 const linkPara = document.querySelector('p');
 linkPara.appendChild(text);
 
-const body = document.querySelector('body');
-body.appendChild(linkPara);
+heading.after(linkPara);
 //linkPara.removeChild(text);
 //text.remove();
 //text.parentNode.removeChild(text);
+
+heading.setAttribute('class', 'highlight');
+
+
+
+// Manipulating documents - shopping list example
+
+shoppingContainer = document.querySelector("#shopping-container");
+shoppingInput = document.querySelector("#item-input");
+shoppingButton = document.querySelector("#add-item");
+shoppingList = document.querySelector("#list");
+
+shoppingButton.addEventListener('click', () =>
+{
+    inputValue = shoppingInput.value;
+    if(inputValue.length < 2)
+    {
+        return window.alert("Define a proper shopping name, your name is too short.")
+    }
+    const newDiv = document.createElement('div');
+    newDiv.setAttribute('class', 'div-shopping-item');
+    shoppingList.appendChild(newDiv);
+
+    const newItem = document.createElement("li");
+    newItem.textContent = inputValue;
+    newItem.style.display = "inline";
+    newDiv.appendChild(newItem);
+
+    const newButton = document.createElement("button");
+    newButton.textContent = "Delete";
+    newDiv.appendChild(newButton);
+
+    newButton.addEventListener('click', (event) =>
+    {
+        event.target.parentElement.remove();
+    });
+
+    shoppingInput.value = "";
+    shoppingInput.focus();
+});
 
