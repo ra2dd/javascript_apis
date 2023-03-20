@@ -136,3 +136,45 @@ shoppingButton.addEventListener('click', () =>
     shoppingInput.focus();
 });
 
+
+
+// Fetching data from the server
+
+const verseChoose = document.querySelector('select');
+const verseDisplay = document.querySelector('pre');
+
+verseChoose.addEventListener('change', () =>
+{
+    updateVerseDisplay(verseChoose.value);
+});
+
+function updateVerseDisplay(verse)
+{
+    verse = verse.replace(' ', '');
+    const verseUrl = `poems/${verse.toLowerCase()}.txt`
+
+    fetch(verseUrl)
+    .then((response) =>
+    {
+        if(!response.ok)
+        {
+            throw new Error(`HTTP error: ${response.status}`);
+        }
+
+        return response.text();
+    })
+    .then((text) =>
+    {
+        verseDisplay.textContent = text;
+    } )
+    .catch((error) => 
+    {
+        verseDisplay.textContent = `Could not fetch verse: ${error}`;
+    });
+}
+
+
+updateVerseDisplay('Verse 1');
+verseChoose.value = 'Verse 1';
+
+
