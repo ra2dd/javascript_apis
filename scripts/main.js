@@ -178,3 +178,40 @@ updateVerseDisplay('Verse 1');
 verseChoose.value = 'Verse 1';
 
 
+
+
+
+
+
+// Working with third party API
+
+L.mapquest.key = '';
+
+const myMap = L.mapquest.map('map', 
+{
+    center: [50, 2],
+    layers: L.mapquest.tileLayer('map'),
+    zoom: 12,
+});
+
+myMap.addControl(L.mapquest.control(
+    {
+        position: 'bottomright'
+    }
+));
+
+let searchControl = L.mapquest.searchControl().addTo(myMap);
+
+L.marker([50, 2],
+{
+    icon: L.mapquest.icons.marker(
+        {
+            shadow: false,
+            size: 'md',
+            symbol: 'B'
+        })
+})
+    .bindPopup('This is ... Somewhere in France!')
+    .addTo(myMap);
+
+// Delete keys when uploading to github

@@ -3,21 +3,26 @@
         <head>
             <title>Working with APIs</title>
             <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width">
-            <link href="style.css" rel="stylesheet">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link href="styles/style.css" rel="stylesheet">
             <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+
+            <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js" defer></script>
+            <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css" />
+
+            <script src="scripts/main.js" defer></script>
         </head>
         <body>
             <h1>Working with APIs</h1>
             
-            <audio src="piano.mp3"></audio>
+            <audio src="static/audio/piano.mp3"></audio>
             
             <button class="paused">Play</button>
             <br />
             <input type="range" min="0" max="1" step="0.01" value="0.5" class="volume" />
 
             <section>
-                <img id="img-dinosaur-head" src="dinosaur-head.webp" alt="Sketch of the dinosaur head" />
+                <img id="img-dinosaur-head" src="static/images/dinosaur-head.webp" alt="Sketch of the dinosaur head" />
                 <p> Link to the
                     <a href="https://www.mozilla.org/"> Mozilla homepage </a>
                 </p>
@@ -54,6 +59,9 @@
                 
             </pre>
 
-            <script src="main.js"></script> 
+
+            <h2>Mapquest API example</h2>
+
+            <div id="map"></div> 
         </body>
     </html>
