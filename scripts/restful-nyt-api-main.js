@@ -9,7 +9,7 @@ const startDate = document.querySelector('.start-date');
 const endDate = document.querySelector('.end-date');
 const submitButton = document.querySelector('.submit');
 
-const previousButtton = document.querySelector('.prev');
+const previousButton = document.querySelector('.prev');
 const nextButton = document.querySelector('.next');
 const nav = document.querySelector('nav');
 const section = document.querySelector('section');
@@ -21,16 +21,16 @@ let pageNumber = 0;
 
 // Controlling functionality with event listeners
 
-//searchForm.addEventListener('submit', submitSearch);
-submitButton.addEventListener('click', submitSearch);
+searchForm.addEventListener('submit', submitSearch);
+//submitButton.addEventListener('click', submitSearch);
 
-function submitSearch(event)
+function submitSearch()
 {
     pageNumber = 0;
-    fetchResults(event);
+    fetchResults();
 }
 
-function fetchResults(event)
+function fetchResults()
 {
     event.preventDefault();
 
@@ -45,8 +45,6 @@ function fetchResults(event)
     {
         url += `&end_date=${endDate.value}`;
     }
-
-    console.log(url);
 
     fetch(url)
         .then((response) => response.json())
@@ -64,9 +62,33 @@ function displayResults(json)
         section.firstChild.remove();
     }
 
+    console.log(json);
     const articles = json.response.docs;
 
-    nav.style.display = articles.length === 10 ? 'block' : 'none';
+    if(json.response.meta.hits > 10)
+    {
+        //nav.style.display = articles.length === 10 ? 'block' : 'none';
+        nav.style.display = 'block';
+
+        nextButton.addEventListener('click', () =>
+        {
+            pageNumber++;
+            fetchResults();
+        })
+
+        if(pageNumber > 0)
+        {
+            previousButton.addEventListener('click', () =>
+            {
+                pageNumber--;
+                fetchResults();
+            }) 
+        }
+    }
+    else
+    {
+        nav.style.display = 'none';
+    }
 
     if(articles.length === 0)
     {
@@ -92,7 +114,7 @@ function displayResults(json)
 
             if(current.multimedia.length > 0)
             {
-                img.src = `https://nytimes.com/${current.multimedia[0].url}`;
+                //img.src = `https://nytimes.com/${current.multimedia[0].url}`;
                 img.alt = heading.textContent;
             }
 
@@ -111,9 +133,6 @@ function displayResults(json)
             article.appendChild(img);
             article.appendChild(keywordPara);
             section.appendChild(article);
-
-
-            
 
         }
     }
