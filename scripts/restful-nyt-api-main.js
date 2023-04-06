@@ -14,6 +14,7 @@ const nextButton = document.querySelector('.next');
 const nav = document.querySelector('nav');
 const section = document.querySelector('section');
 
+previousButton.style.display = 'none';
 nav.style.display = 'none';
 
 let pageNumber = 0;
@@ -22,15 +23,14 @@ let pageNumber = 0;
 // Controlling functionality with event listeners
 
 searchForm.addEventListener('submit', submitSearch);
-//submitButton.addEventListener('click', submitSearch);
 
-function submitSearch()
+function submitSearch(event)
 {
     pageNumber = 0;
-    fetchResults();
+    fetchResults(event);
 }
 
-function fetchResults()
+function fetchResults(event)
 {
     event.preventDefault();
 
@@ -62,33 +62,39 @@ function displayResults(json)
         section.firstChild.remove();
     }
 
-    console.log(json);
-    const articles = json.response.docs;
-
     if(json.response.meta.hits > 10)
     {
         //nav.style.display = articles.length === 10 ? 'block' : 'none';
         nav.style.display = 'block';
 
-        nextButton.addEventListener('click', () =>
+        nextButton.addEventListener('click', (event) =>
         {
             pageNumber++;
-            fetchResults();
-        })
+            fetchResults(event);
+        });
 
         if(pageNumber > 0)
         {
-            previousButton.addEventListener('click', () =>
+            previousButton.style.display = 'block';
+            previousButton.addEventListener('click', (event) =>
             {
                 pageNumber--;
-                fetchResults();
-            }) 
+                fetchResults(event);
+
+                if(pageNumber === 0)
+                {
+                    previousButton.style.display = 'none';
+                }
+            });
         }
     }
     else
     {
         nav.style.display = 'none';
     }
+
+
+    const articles = json.response.docs;
 
     if(articles.length === 0)
     {
