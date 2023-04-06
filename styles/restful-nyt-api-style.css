@@ -40,3 +40,8 @@ form p:nth-of-type(1)
     float: right;
 }
 
+img
+{
+    width: 20%;
+    height: 20%;
+}

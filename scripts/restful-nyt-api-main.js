@@ -21,37 +21,14 @@ let pageNumber = 0;
 
 // Controlling functionality with event listeners
 
+//searchForm.addEventListener('submit', submitSearch);
 submitButton.addEventListener('click', submitSearch);
 
-function submitSearch()
+function submitSearch(event)
 {
     pageNumber = 0;
-    console.log('dziala');
     fetchResults(event);
 }
-
-/*
-async function fetchUrl(url)
-{
-    try
-    {
-        const response = await fetch(url);
-
-        if(!response.ok)
-        {
-            throw new Error(`HTTP error: ${response.status}`);
-        }
-
-        const data = await response.json();
-        return data;
-    }
-
-    catch(error)
-    {
-        console.error(`Could not fetch url: ${error}`);
-    }
-}
-*/
 
 function fetchResults(event)
 {
@@ -73,6 +50,7 @@ function fetchResults(event)
 
     fetch(url)
         .then((response) => response.json())
+        .then((json) => displayResults(json))
         .catch((error) =>
         {
             console.error(`Could not fetch data: ${error}`);
@@ -83,8 +61,60 @@ function displayResults(json)
 {
     while (section.firstChild)
     {
-        section.firstChild(remove);
+        section.firstChild.remove();
     }
 
     const articles = json.response.docs;
+
+    nav.style.display = articles.length === 10 ? 'block' : 'none';
+
+    if(articles.length === 0)
+    {
+        const para = document.createElement('p');
+        para.textContent = 'No results returned.';
+        section.appendChild(para);
+    }
+    else
+    {
+        for (current of articles)
+        {
+            const article = document.createElement('article');
+            const heading = document.createElement('h2');
+            const snippetPara = document.createElement('p');
+            const link = document.createElement('a');
+            const img = document.createElement('img');
+            const keywordPara = document.createElement('p');
+            keywordPara.classList.add('keywords');
+
+            heading.textContent = current.headline.main;
+            snippetPara.textContent = current.snippet;
+            link.href = current.web_url;
+
+            if(current.multimedia.length > 0)
+            {
+                img.src = `https://nytimes.com/${current.multimedia[0].url}`;
+                img.alt = heading.textContent;
+            }
+
+            for (const keyword of current.keywords)
+            {
+                const span = document.createElement('span');
+                span.textContent = `${keyword.value}`;
+                keywordPara.appendChild(span);
+            }
+            
+            //console.log(current);
+
+            article.appendChild(heading);
+            article.appendChild(snippetPara);
+            article.appendChild(link);
+            article.appendChild(img);
+            article.appendChild(keywordPara);
+            section.appendChild(article);
+
+
+            
+
+        }
+    }
 }
