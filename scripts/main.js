@@ -185,7 +185,7 @@ verseChoose.value = 'Verse 1';
 
 // Working with third party API
 
-L.mapquest.key = '';
+L.mapquest.key = 'paste-key-here';
 
 const myMap = L.mapquest.map('map', 
 {

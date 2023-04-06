@@ -1,4 +1,42 @@
 body
 {
-    font-family: "Playfair Display";
+    font-family: "Fjalla One";
 }
+
+header
+{
+    font-family: "Playfair Display";
+    text-align: center;
+}
+
+.wrapper
+{
+    width: 90%;
+    display: flex;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+
+.controls, .results
+{
+    flex: 1;
+    padding: 10px;
+    margin: 10px;
+    background-color: aqua;
+}
+
+form p:nth-of-type(1)
+{
+    margin-top: 0;
+}
+
+.prev
+{
+    float: left;
+}
+
+.next
+{
+    float: right;
+}
+
