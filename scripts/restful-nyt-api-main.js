@@ -113,6 +113,8 @@ function displayResults(json)
             const img = document.createElement('img');
             const keywordPara = document.createElement('p');
             keywordPara.classList.add('keywords');
+            const keyImgDiv = document.createElement('div');
+            keyImgDiv.classList.add('keyword-img-div');
 
             heading.textContent = current.headline.main;
             snippetPara.textContent = current.snippet;
@@ -124,11 +126,17 @@ function displayResults(json)
                 img.alt = heading.textContent;
             }
 
+            let counter = 0;
             for (const keyword of current.keywords)
             {
                 const span = document.createElement('span');
                 span.textContent = `${keyword.value}`;
                 keywordPara.appendChild(span);
+
+                if(++counter > 5)
+                {
+                    break;
+                }
             }
             
             //console.log(current);
@@ -136,8 +144,11 @@ function displayResults(json)
             article.appendChild(link);
             link.appendChild(heading);
             article.appendChild(snippetPara);
-            article.appendChild(img);
-            article.appendChild(keywordPara);
+
+            keyImgDiv.appendChild(keywordPara);
+            keyImgDiv.appendChild(img);
+            article.appendChild(keyImgDiv);
+
             section.appendChild(article);
 
         }
