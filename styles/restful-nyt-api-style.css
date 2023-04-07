@@ -7,6 +7,7 @@ header
 {
     font-family: "Playfair Display";
     text-align: center;
+    font-size: 120%;
 }
 
 .wrapper
@@ -17,17 +18,18 @@ header
     justify-content: space-between;
 }
 
-.controls, .results
+.results
 {
-    flex: 1;
-    padding: 10px;
-    margin: 10px;
-    background-color: aqua;
+    flex: 1.5;
+    padding: 1%;
 }
 
-form p:nth-of-type(1)
+.controls
 {
-    margin-top: 0;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    margin: 10% 5%;
 }
 
 .prev
@@ -40,8 +42,41 @@ form p:nth-of-type(1)
     float: right;
 }
 
+nav
+{
+    margin-bottom: 50px;
+}
+
+
+/*
+    Article styling
+*/
+article
+{
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #ddd;
+    border: 1px solid #ccc;
+}
+
 img
 {
-    width: 20%;
-    height: 20%;
+    max-width: 200px;
+    margin-left: 20px;
+    float: right;
+}
+
+span
+{
+    background-color: #ccc;
+    padding: 5px;
+    margin: 5px;    
+}
+
+article p.keywords
+{
+    display:flex;
+    flex-flow: row wrap;
+    align-items: center; 
+    justify-content: normal;
 }

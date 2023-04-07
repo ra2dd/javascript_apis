@@ -120,7 +120,7 @@ function displayResults(json)
 
             if(current.multimedia.length > 0)
             {
-                //img.src = `https://nytimes.com/${current.multimedia[0].url}`;
+                img.src = `https://nytimes.com/${current.multimedia[0].url}`;
                 img.alt = heading.textContent;
             }
 
@@ -133,9 +133,9 @@ function displayResults(json)
             
             //console.log(current);
 
-            article.appendChild(heading);
-            article.appendChild(snippetPara);
             article.appendChild(link);
+            link.appendChild(heading);
+            article.appendChild(snippetPara);
             article.appendChild(img);
             article.appendChild(keywordPara);
             section.appendChild(article);
