@@ -107,6 +107,7 @@ function displayResults(json)
         for (current of articles)
         {
             const article = document.createElement('article');
+            const pubDatePara = document.createElement('p');
             const heading = document.createElement('h2');
             const snippetPara = document.createElement('p');
             const link = document.createElement('a');
@@ -122,6 +123,11 @@ function displayResults(json)
             
 
             heading.textContent = current.headline.main;
+            heading.style.display = 'inline';
+            pubDatePara.textContent = `(${current.pub_date.slice(0,10)})`;
+            pubDatePara.style.display = 'inline';
+            pubDatePara.classList.add('pub-date');
+
             snippetPara.textContent = current.snippet;
             link.href = current.web_url;
 
@@ -148,6 +154,7 @@ function displayResults(json)
 
             article.appendChild(link);
             link.appendChild(heading);
+            link.appendChild(pubDatePara);
 
             innerFlex.appendChild(snippetPara);
             innerFlex.appendChild(keywordPara);

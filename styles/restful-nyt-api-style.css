@@ -7,7 +7,7 @@ header
 {
     font-family: "Playfair Display";
     text-align: center;
-    font-size: 120%;
+    font-size: 130%;
 }
 
 .wrapper
@@ -24,12 +24,21 @@ header
     padding: 1%;
 }
 
+
+/*
+    Styling button article page navigation
+*/
 .controls
 {
     flex: 1;
     display: flex;
     justify-content: center;
     margin: 10% 5%;
+}
+
+nav
+{
+    margin-bottom: 50px;
 }
 
 .prev
@@ -40,11 +49,6 @@ header
 .next
 {
     float: right;
-}
-
-nav
-{
-    margin-bottom: 50px;
 }
 
 
@@ -59,24 +63,17 @@ article
     border: 1px solid #ccc;
 }
 
+
 /*
     Fixing image overflow(float right) by using display flex
 */
 .outer-flex
 {
+    margin-top: 16px;
+
     display: flex;
     flex-flow: row wrap;
-    align-items: center; 
-}
-
-.inner-flex
-{
-    flex: 1.5;
-}
-
-.inner-flex p
-{
-    margin: 8px 8px 14px 8px;
+    align-items: flex-start; 
 }
 
 img
@@ -84,14 +81,20 @@ img
     flex: 1;
     max-width: 200px;
     margin-left: 20px;
-    align-self: flex-start;
 }
 
-span
+
+/*
+    Styling inner div with snippet para and keywords para
+*/
+.inner-flex
 {
-    background-color: #ccc;
-    padding: 4px;
-    margin: 4px;    
+    flex: 1.5;
+}
+
+.inner-flex p
+{
+    margin: 0 8px 14px 8px;
 }
 
 article div div p.keywords
@@ -105,7 +108,33 @@ article div div p.keywords
     justify-content: normal;
 }
 
+span
+{
+    background-color: #ccc;
+    padding: 4px;
+    margin: 4px;    
+}
+
+
+/*
+    Styling link with heading and publication date paragraph
+*/
 a
 {
+    display: block;
     color: black;
+    margin: 8px;
+    margin-bottom: 16px;
+    text-underline-offset: 2px;
+}
+
+h2
+{
+    font-family: "Playfair Display";
+}
+
+.pub-date
+{
+    margin-left: 6px;
+    font-size: 90%;
 }
