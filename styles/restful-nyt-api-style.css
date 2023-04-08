@@ -62,11 +62,21 @@ article
 /*
     Fixing image overflow(float right) by using display flex
 */
-.keyword-img-div
+.outer-flex
 {
     display: flex;
     flex-flow: row wrap;
     align-items: center; 
+}
+
+.inner-flex
+{
+    flex: 1.5;
+}
+
+.inner-flex p
+{
+    margin: 8px 8px 14px 8px;
 }
 
 img
@@ -74,20 +84,28 @@ img
     flex: 1;
     max-width: 200px;
     margin-left: 20px;
+    align-self: flex-start;
 }
 
 span
 {
     background-color: #ccc;
-    padding: 5px;
-    margin: 5px;    
+    padding: 4px;
+    margin: 4px;    
 }
 
-article p.keywords
+article div div p.keywords
 {
     flex: 1.5;
+    font-size: 80%;
+
     display:flex;
     flex-flow: row wrap;
     align-items: center; 
     justify-content: normal;
+}
+
+a
+{
+    color: black;
 }

@@ -113,8 +113,13 @@ function displayResults(json)
             const img = document.createElement('img');
             const keywordPara = document.createElement('p');
             keywordPara.classList.add('keywords');
-            const keyImgDiv = document.createElement('div');
-            keyImgDiv.classList.add('keyword-img-div');
+
+            const outerFlex = document.createElement('div');
+            outerFlex.classList.add('outer-flex');
+
+            const innerFlex = document.createElement('div');
+            innerFlex.classList.add('inner-flex');
+            
 
             heading.textContent = current.headline.main;
             snippetPara.textContent = current.snippet;
@@ -143,11 +148,13 @@ function displayResults(json)
 
             article.appendChild(link);
             link.appendChild(heading);
-            article.appendChild(snippetPara);
 
-            keyImgDiv.appendChild(keywordPara);
-            keyImgDiv.appendChild(img);
-            article.appendChild(keyImgDiv);
+            innerFlex.appendChild(snippetPara);
+            innerFlex.appendChild(keywordPara);
+
+            outerFlex.appendChild(innerFlex);
+            outerFlex.appendChild(img);
+            article.appendChild(outerFlex);
 
             section.appendChild(article);
 
